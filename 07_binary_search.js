@@ -15,23 +15,16 @@ Example:
     In the third and final step we are only left with 8 at index 2.
 
 */
-function binarySearch(sortedArray, searchValue, steps = 0) {
+function binarySearch(sortedArray, searchValue, steps = 0, index = 0) {
   steps++
   if (sortedArray.length == 1) {
-    return steps
+    return [index+middle, steps]
   }
   let middle = (sortedArray.length % 2 == 0) ? (sortedArray.length / 2) : Math.floor(sortedArray.length / 2)
-  //find the middle of the lenth of the array
-      //middle = even == (length / 2)
-      //          odd ==  RoundDown(length / 2)
-  //is searchValue sortedArray[middle]? if it is return 1 step
   if (sortedArray[middle] == searchValue) {
-    return steps
-  //if its not then the search value will either be greater or less than middle
+    return [index+middle, steps]
   } else {
-    //if smaller perform another binarySearch on the first half of the array
-    //if its greater perform another binarySearch on the last half of the array
-    return (sortedArray[middle] < searchValue) ? binarySearch(sortedArray.slice(middle), searchValue, steps): binarySearch(sortedArray.slice(0, middle), searchValue, steps)
+    return (sortedArray[middle] < searchValue) ? binarySearch(sortedArray.slice(middle), searchValue, steps, index+middle): binarySearch(sortedArray.slice(0, middle), searchValue, steps, index+middle)
   }
 }
 
@@ -39,17 +32,18 @@ function binarySearch(sortedArray, searchValue, steps = 0) {
 
 let assert = require('assert')
 
+
 describe('Count loops', function () {
     it('Should count one step when search values is in the middle', function () {
-        assert.equal(1, binarySearch([1, 3, 7, 10, 14, 19, 31], 10))
+        assert.deepEqual([3, 1], binarySearch([1, 3, 7, 10, 14, 19, 31], 10))
     })
     it('Should count one step when search value is only value', function () {
-        assert.equal(1, binarySearch([1], 1))
+        assert.deepEqual([0, 1], binarySearch([1], 1))
     })
     it('Should count length divided by two steps when value is at beginning', function () {
-        assert.equal(3, binarySearch([1, 3, 7, 10, 14, 19, 31], 1))
+        assert.deepEqual([0, 3], binarySearch([1, 3, 7, 10, 14, 19, 31], 1))
     })
     it('Should count half the array length when value is at an end', function () {
-        assert.equal(3, binarySearch([1, 3, 7, 10, 14, 19, 31], 31))
+        assert.deepEqual([6, 3], binarySearch([1, 3, 7, 10, 14, 19, 31], 31))
     })
 })

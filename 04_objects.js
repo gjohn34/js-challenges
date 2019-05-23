@@ -110,7 +110,7 @@ const addProduct = (id, title, price) => {
 const updateProductPrice = (id, newPrice) => {
   product = productById(id)
   product.price = newPrice
-  console.log(product)
+  // console.log(product)
   // Update the price of a specific product
 }
 
