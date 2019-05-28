@@ -17,8 +17,7 @@ function persistence(num) {
   if (isNaN(num) == true) {
     return false
   } else {
-    steps = 0
-    return toOneDigit(num, steps)
+    return toOneDigit(num)
   }
 }
 
@@ -26,13 +25,12 @@ function multiply(accumulator, currentValue) {
   return accumulator * currentValue
 }
 
-function toOneDigit(num, steps) {
-  if (num > 0) {
-    //multiply by -1 to turn to positive
-    //then do the reduction
-    //then multiply by -1 again to turn to negative
-  }
+function toOneDigit(num) {
+  steps = 0
   array = num.toString().split('')
+  if (array[0] == '-') {
+    array = array.slice(1)
+  }
   while (array.length > 1) {
     result = array.reduce(multiply);
     array = result.toString().split('')
@@ -64,7 +62,7 @@ describe('Edge Cases', function () {
   it('Should return false if input is not a number', function () {
     assert.equal(persistence('thirtynine'), false);
   })
-  // it('should return a single digit number if input is negative', function () {
-  //   assert.equal(persistence(-39), 3);
-  // })
+  it('should return a single digit number if input is negative', function () {
+    assert.equal(persistence(-39), 3);
+  })
 })
