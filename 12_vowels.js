@@ -11,12 +11,17 @@ count_vowels("Hello World") should return ["e","o","o"]
 Check your solution by running the tests:
 mocha 12_vowels.js
 */
+function vowels(string) {
+  let regex1 = RegExp('[aeiouAEIOU]','g');
+  let array1;
+  let array2 = []
+  while ((array1 = regex1.exec(string)) !== null) {
+    array2.push(array1[0])
+  }
 
-
-
-function vowels (string) {
-    // Your code here
+  return array2
 }
+
 
 
 var assert = require('assert');
