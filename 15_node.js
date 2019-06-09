@@ -25,7 +25,13 @@ const port = 3000
 
 const requestHandler = (request, response) => {
 
+
+
   console.log('Woop, new request!', request.method, request.url);
+
+  if (request.url === '/') {
+    response.end('<h1>Hello</h1><p>World</p>')
+  }
 
   if (request.url === '/hello') {
     response.end('world')
