@@ -1,11 +1,11 @@
 /*
 
-A pangram is a sentence that contains every single letter of the 
-alphabet at least once. For example, the sentence "The quick brown 
-fox jumps over the lazy dog" is a pangram, because it uses the 
+A pangram is a sentence that contains every single letter of the
+alphabet at least once. For example, the sentence "The quick brown
+fox jumps over the lazy dog" is a pangram, because it uses the
 letters A-Z at least once.
 
-Given a string, detect whether or not it is a pangram. 
+Given a string, detect whether or not it is a pangram.
 Return True if it is, False if not.
 
 If the given string has any uppercase or numbers, it should return false
@@ -13,8 +13,22 @@ If the given string has any uppercase or numbers, it should return false
 */
 
 function isPangram(string) {
-    //Your code here
+  let array = string.split(' ').join('').split('')
+  let uniqueArray = array.filter(function(value, index, self) {
+    return self.indexOf(value) === index
+  })
+  if (uniqueArray.length == 26) {
+    return uniqueArray.every(alphaChar)
+  } else {
+    return false
+  }
 }
+
+function alphaChar(currentValue) {
+  let regex = /[a-z]/g;
+  return regex.test(currentValue)
+}
+
 
 const assert = require('assert');
 
@@ -37,7 +51,7 @@ describe('Pangram Challenge', function () {
     it('Should return false if only numbers are included', function () {
         assert.equal(isPangram('1,2,3,4'), false)
     })
-    it('Should return true for uppercase', function () {
-        assert.equal(isPangram('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), true)
+    it('Should return false for uppercase', function () {
+        assert.equal(isPangram('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), false)
     })
 })

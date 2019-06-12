@@ -24,9 +24,7 @@ const countEvens = (array) => {
     }
   })
   return result
-// Your code here
 }
-
 // Your tests here
 
 var assert = require('assert');
@@ -42,7 +40,7 @@ describe('nOfEvenNumbers', function () {
         assert.equal(null, countEvens(['one', 'two', 'three']));
 
     });
-    it('should return 0 if the array is odds', function () {
+    it('should return null if the array is odds', function () {
         assert.equal(null, countEvens([1,3,5,7,9]));
     });
 
