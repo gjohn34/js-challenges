@@ -17,11 +17,7 @@ function isPangram(string) {
   let uniqueArray = array.filter(function(value, index, self) {
     return self.indexOf(value) === index
   })
-  if (uniqueArray.length == 26) {
-    return uniqueArray.every(alphaChar)
-  } else {
-    return false
-  }
+  return (uniqueArray.length == 26) ? uniqueArray.every(alphaChar) : false
 }
 
 function alphaChar(currentValue) {
