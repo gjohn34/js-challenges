@@ -1,17 +1,21 @@
 function uniqueString(array) {
+
   //initializing arrays to be used later
+
   let unique = []
   let regex = []
   //turning each element in the array to lower case and
   // removing any dublicate values to create unique elements
-  let lcArray = array.map((element) => {return element.toLowerCase()})
+  let lcArray = array.map(element => element.toLowerCase())
   lcArray.forEach(function(element) {
     unique.push(element.split('').filter(onlyUnique))
   })
   //then creating a regexp based on the first element in our unique array
   for (let i = 0; i < unique[0].length; i++) {
+    //taking each character in the first element
     regex.push(unique[0][i])
   }
+
   let reg = new RegExp(`[${regex.join('')}]`)
   //iterating through the unique array, we check if each element matches
   //the regexp we created from the first element of the array.
@@ -23,6 +27,8 @@ function uniqueString(array) {
 
   //if the number of matches is less than 0, we know that the first element
   //was the element that was different from the rest.
+
+
   let nMatches = 0
   let position = null
   let length = unique[0].length
@@ -34,8 +40,6 @@ function uniqueString(array) {
       position = i
     }
   }
-  console.log(`nMatches: ${nMatches}, position: ${position}, length: ${length}`);
-  console.log(`Is Matches greater than 0? ${nMatches > 0}`);
   return (nMatches > 0) ? array[position] : array[0]
 }
 
@@ -49,6 +53,10 @@ function matches(currentValue, regularExpression) {
 
 
 const assert = require('assert')
+
+
+
+
 
 describe('Unique string challenge', function() {
     it('Should return the unique string', function() {
