@@ -1,6 +1,6 @@
 /*
 Create a function which will take a value and multiply it a
-specific number of times. 
+specific number of times.
 
 If the times parameter is not a valid number the code should
 return null.
@@ -14,7 +14,20 @@ If your feeling confident add more tests below.
 */
 
 const valueAndTimes = (value, times) => {
-    // Your code here
+  console.log(typeof value);
+  console.log(times);
+  // console.log(value * times);
+  if (typeof times != 'number') {
+    return null
+  } else if (typeof value == 'string') {
+    result = ""
+    for (let i = 0; i < times; i++) {
+      result += value
+    }
+    return result
+  } else {
+    return value * times
+  }
 }
 
 let assert = require('assert')
