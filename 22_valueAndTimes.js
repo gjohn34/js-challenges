@@ -14,9 +14,6 @@ If your feeling confident add more tests below.
 */
 
 const valueAndTimes = (value, times) => {
-  console.log(typeof value);
-  console.log(times);
-  // console.log(value * times);
   if (typeof times != 'number') {
     return null
   } else if (typeof value == 'string') {
