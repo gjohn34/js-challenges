@@ -17,30 +17,30 @@ function conwaysGameOfLife(game) {
 		outerValue.forEach(function(innerValue, innerIndex) {
 			let ones = 0
 			let bottomlevel = innerIndex
+			//directly above
 			if (toplevel != 0) {
-				//directly above
-				if (game[toplevel-1][bottomlevel] == 1) {
+				if (game[toplevel-1][bottomlevel]) {
 					ones++
 				}
 				//above left
-				if (game[toplevel-1][bottomlevel-1] == 1) {
+				if (game[toplevel-1][bottomlevel-1]) {
 					ones++
 				}
-				if (game[toplevel-1][bottomlevel+1] == 1) {
+				if (game[toplevel-1][bottomlevel+1]) {
 					ones++
 				}
 			}
+			//directly below
 			if (toplevel < game.length-1) {
-				//directly below
-				if (game[toplevel+1][bottomlevel] == 1) {
+				if (game[toplevel+1][bottomlevel]) {
 					ones++
 				}
 				//below left
-				if (game[toplevel+1][bottomlevel-1] == 1) {
+				if (game[toplevel+1][bottomlevel-1]) {
 					ones++
 				}
 				//below right
-				if (game[toplevel+1][bottomlevel+1] == 1) {
+				if (game[toplevel+1][bottomlevel+1]) {
 					ones++
 				}
 			}
@@ -56,7 +56,7 @@ function conwaysGameOfLife(game) {
 					ones++
 				}
 			}
-			if (innerValue == 1) {
+			if (innerValue) {
 				if (ones < 2) {
 					newArray.push(0)
 				} else if (ones == 2 || ones == 3) {
@@ -64,7 +64,7 @@ function conwaysGameOfLife(game) {
 				} else if (ones > 3) {
 					newArray.push(0)
 				}
-			} else if (innerValue == 0) {
+			} else if (!innerValue) {
 				if (ones == 3) {
 					newArray.push(1)
 				} else {
@@ -74,6 +74,7 @@ function conwaysGameOfLife(game) {
 		})
 		result.push(newArray)
 	})
+	console.log(result);
 	return result;
 }
 
