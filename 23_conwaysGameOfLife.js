@@ -10,8 +10,78 @@
 // Good luck and have fun!
 
 function conwaysGameOfLife(game) {
-	// Your code goes here
+	let result = []
+	game.forEach(function(outerValue, outerIndex) {
+		let newArray = []
+		let toplevel = outerIndex
+		outerValue.forEach(function(innerValue, innerIndex) {
+			let ones = 0
+			let bottomlevel = innerIndex
+			if (toplevel != 0) {
+				//directly above
+				if (game[toplevel-1][bottomlevel] == 1) {
+					ones++
+				}
+				//above left
+				if (game[toplevel-1][bottomlevel-1] == 1) {
+					ones++
+				}
+				if (game[toplevel-1][bottomlevel+1] == 1) {
+					ones++
+				}
+			}
+			if (toplevel < game.length-1) {
+				//directly below
+				if (game[toplevel+1][bottomlevel] == 1) {
+					ones++
+				}
+				//below left
+				if (game[toplevel+1][bottomlevel-1] == 1) {
+					ones++
+				}
+				//below right
+				if (game[toplevel+1][bottomlevel+1] == 1) {
+					ones++
+				}
+			}
+			//directly left
+			if (bottomlevel != 0) {
+				if (game[toplevel][bottomlevel-1]) {
+					ones++
+				}
+			}
+			//directly
+			if (bottomlevel < outerValue.length-1) {
+				if (game[toplevel][bottomlevel+1]) {
+					ones++
+				}
+			}
+			if (innerValue == 1) {
+				if (ones < 2) {
+					newArray.push(0)
+				} else if (ones == 2 || ones == 3) {
+					newArray.push(1)
+				} else if (ones > 3) {
+					newArray.push(0)
+				}
+			} else if (innerValue == 0) {
+				if (ones == 3) {
+					newArray.push(1)
+				} else {
+					newArray.push(0)
+				}
+			}
+		})
+		result.push(newArray)
+	})
+	return result;
 }
+
+//     If a living cell has fewer than 2 neighbours, it dies.
+//     If a living cell has 2 or 3 neighbours, it continues to live.
+//     If a living cell has greater than 3 neighbours, it dies.
+//     If a dead cell has exactly 3 neighbours, it comes to life.
+// Good luck and have fun!
 
 let assert = require("assert")
 
