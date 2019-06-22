@@ -13,8 +13,14 @@
 // # Error checking for text strings or other invalid inputs is not required, only valid integers will be passed into the function.
 
 function narcissisticNumber(number) {
-	// your code goes here
+	array = number.toString().split('')
+	result = array.reduce(function(currentValue, accumulator) {
+		return parseInt(currentValue) + parseInt(accumulator)**array.length
+	});
+	return result == number ? true : false;
 }
+
+narcissisticNumber(153)
 
 let assert = require("assert")
 
