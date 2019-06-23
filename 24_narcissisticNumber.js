@@ -13,10 +13,14 @@
 // # Error checking for text strings or other invalid inputs is not required, only valid integers will be passed into the function.
 
 function narcissisticNumber(number) {
+	//turn our Integer Number into a string then separate into an array
 	array = number.toString().split('')
+	//reduction on our array by taking each value and adding the next
+	//element to the power of the amount of digits
 	result = array.reduce(function(currentValue, accumulator) {
 		return parseInt(currentValue) + parseInt(accumulator)**array.length
 	});
+	//if our reduced number is the same as our beginning number we return true otherwise false
 	return result == number ? true : false;
 }
 
