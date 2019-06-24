@@ -31,15 +31,14 @@
 
 function formatNames(names) {
   //begin by initializing new array
-  people = []
   //iterate through the array and format to the correct case
-  for (let i = 0; i < names.length; i++) {
-    people.push(`(${names[i].last.toUpperCase()}, ${names[i].first.toUpperCase()})`)
-  }
   //join and sort
-  let result = people.sort().join(', ')
   //return result or empty string
-  return (names.length > 0) ? result : ""
+  return (names.length > 0) ? names.map((item) => {
+    return `(${item.last}, ${item.first})`.toUpperCase()})
+      .sort()
+      .join(', ')
+      : ""
 }
 
 let assert = require("assert")
