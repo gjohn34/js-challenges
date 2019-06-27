@@ -17,7 +17,20 @@
 // [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0]
 
 function reverseBytes(data) {
-	// Your code goes here
+	let bitstrings = []
+	//return empty array if input it empty
+	if (data.length == 0) {
+		return []
+	}
+
+	//for every interval of 8 bits, split the array into separate arrays
+	for (let i = 0; i != data.length / 8; i++) {
+		bitstrings.push(data.slice(i*8, (i+1)*8))
+	}
+
+	let final = []
+	bitstrings.map((item) => {final.unshift(item)})
+	return final.reduce(function(a,b) {return a.concat(b)})
 }
 
 let assert = require("assert")
