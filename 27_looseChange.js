@@ -13,7 +13,37 @@
 // Expected output: {2d: 0, 1d: 0, 50c: 0, 20c: 1, 10c: 0, 5c: 1}
 
 function looseChange(money) {
-	// your code goes here
+	let change = {
+		'2d': 0,
+		'1d': 0,
+		'50c': 0,
+		'20c': 0,
+		'10c': 0,
+		 '5c': 0,
+	}
+	let d = Math.round(money / 0.05)
+	while (d) {
+		 if (d >= 40) {
+			 d-= 40
+			 change['2d'] += 1
+		 } else if (d >= 20) {
+		 	 d-= 20
+			 change['1d'] += 1
+		 } else if (d >= 10) {
+			 d-= 10
+			 change['50c'] += 1
+		 } else if (d >= 4) {
+			 d-= 4
+			 change['20c'] += 1
+		 } else if (d >= 2) {
+			 d-= 2
+			 change['10c'] += 1
+		 } else if (d >= 1) {
+			 d-= 1
+			 change['5c'] += 1
+		 }
+	}
+	return change
 }
 
 let assert = require("assert")

@@ -4,7 +4,7 @@
 
 // Each segment is 8 bits long, meaning the order of these segments needs to be reversed, for example:
 
-//   11111111  00000000  00001111  10101010
+  // 11111111  00000000  00001111  10101010
 //     (byte1)(byte2)(byte3)(byte4)
 // should become:
 
