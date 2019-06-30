@@ -14,10 +14,26 @@
 // EXTRA FUN!!! Make up another encryption and challenge your friends to write the decipher method
 
 function decipher(code) {
-	// your code goes here
+	let result = []
+	let words = code.split(' ')
+	let regex = /[0-9]{1,}/
+	for (let i = 0; i < words.length; i++) {
+		let ascii_value = regex.exec(words[i])[0]
+		result.push(words[i].replace(regex, String.fromCharCode(ascii_value)))
+	}
+	for (let i = 0; i < result.length; i++) {
+		let word = result[i].split('')
+		let lastLetter = word[1]
+		word.splice(1, 1, word[word.length-1])
+		word.pop()
+		word.push(lastLetter)
+		result[i] = word.join('')
+	}
+	return result.join(' ')
 }
 
 let assert = require("assert")
+
 describe("decipher", () => {
 	it("should decipher '72olle 103doo 100ya' as 'Hello good day'", () => {
 		assert.equal(decipher("72olle 103doo 100ya"), "Hello good day")
